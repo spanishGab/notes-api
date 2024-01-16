@@ -12,9 +12,9 @@ A API deverá permitir:
 - criar uma nova nota
   - route: /notes
   - method: POST
-* buscar uma pertencente ao usuário nota 
-  - route: /
-  - method: 
+* buscar nota pertencente ao usuário 
+  - route: /users/:id/notes/:id
+  - method: GET
 * listar as notas do usuário 
   - route: /notes/:id
   - method: GET
