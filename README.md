@@ -39,11 +39,16 @@ Nessa parte cada rota deverá ser descrita no seguinte formato:
 ## path da rota
 ### request
 headers: (se houver)
+
 body: (se houver)
+
 query parameters: (se houver)
+
 path parameters: (se houver)
 
 ### response
 headers: (se houver)
+
 body: (se houver)
+
 HTTP status code:
