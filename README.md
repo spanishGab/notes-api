@@ -30,3 +30,20 @@ A API deverá permitir:
 * apagar uma nota do sistema 
   - route: /api/v1/notes/:id
   - method: DELETE
+
+
+## Descrição técnica das rotas
+
+Nessa parte cada rota deverá ser descrita no seguinte formato:
+
+## path da rota
+### request
+headers: (se houver)
+body: (se houver)
+query parameters: (se houver)
+path parameters: (se houver)
+
+### response
+headers: (se houver)
+body: (se houver)
+HTTP status code:
