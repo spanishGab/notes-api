@@ -16,7 +16,7 @@ A API deverá permitir:
   - route: /api/v1/notes
   - method: POST
 * buscar nota pertencente ao usuário 
-  - route: /api/v1notes/:id
+  - route: /api/v1/notes/:id
   - method: GET
 * listar as notas do usuário 
   - route: /api/v1/notes
