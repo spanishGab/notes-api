@@ -3,11 +3,14 @@
 ## Requisitos
 
 A API deverá permitir:
-- Cadastrar uma nova conta de usuário:
+
+- **Cadastrar uma nova conta de usuário:**
+
   - route: /api/v1/signup
   - method: POST
-  
+
   - **Request:**
+
     - headers:
       - Content-Type: application/json
       - Authorization: (JWT)
@@ -31,186 +34,279 @@ A API deverá permitir:
         {
           "message": "User created successfully!",
           "user": {
-            "id": 123,
+            "userId": 123,
             "firstname": "firstname",
             "lastname": "lastname",
             "nickname": "nickname",
-            "email": "novo.usuario@example.com"
+            "email": "firstname.lastname@example.com"
           }
         }
         ```
-    
-- Entrar em uma conta na API:
-  - route: /api/v1/logout
+
+- **Entrar em uma conta na API:**
+
+  - route: /api/v1/login
   - method: POST
-  
+
   - **Request:**
+
     - headers:
       - Content-Type: application/json
+      - Authorization: (JWT)
     - body:
       ```javascript
       {
-        "email": "novo.usuario@example.com",
+        "email": "firstname.lastname@example.com",
         "password": "password"
       }
       ```
 
   - **Response:**
   - https status code: **200 OK**
-      - Location: /api/v1/users/:id
+    - Location: /api/v1/users/:id
+    - Content-Type: application/json
+    - body:
+      ```javascript
+      {
+        "token": "token",
+        "userId": 123,
+      }
+      ```
+
+- **Sair de uma conta na API:**
+
+  - route: /api/v1/logout
+  - method: POST
+
+  - **Request:**
+
+    - headers:
       - Content-Type: application/json
-      - body:
-        ```javascript
-        {
-          "token": "token",
-          "userId": 123,
+      - Authorization: (JWT)
+    - body:
+      ```javascript
+      {
+        "userId": 123,
+      }
+      ```
+
+  - **Response:**
+
+    - headers:
+      - Content-Type: application/json
+    - https status code: **204 No Content**
+
+- **Criar uma nova nota:**
+
+  - route: /api/v1/notes
+  - method: POST
+
+  - **Request:**
+
+    - headers:
+      - Content-Type: application/json
+      - Authorization: (JWT)
+    - body:
+      ```javascript
+      {
+        "title": "any title",
+        "content": "any content",
+      }
+      ```
+
+  - **Response:**
+
+    - headers:
+      - Content-Type: application/json
+    - body:
+      ```javascript
+      {
+        "id": 123,
+        "title": "any title",
+        "content": "any content",
+        "status": "PENDING",
+      }
+      ```
+    - https status code: **201 Created**
+
+* **Buscar nota pertencente ao usuário:**
+
+  - route: /api/v1/notes/:id
+  - method: GET
+
+  - **Request:**
+
+    - headers:
+      - Content-Type: application/json
+      - Authorization: (JWT)
+
+  - **Response:**
+
+    - headers:
+      - Content-Type: application/json
+      - Authorization: (JWT)
+    - body:
+      ```javascript
+      "data": {
+          "id": 123,
+          "title": 'any title',
+          "content": 'any content',
         }
-        ```
-    
-- Sair de uma conta na API:
-  - route: /api/v1/login
-  - method: POST
-  
-  - **Request:**
+      ```
+    - https status code: **200 OK**
 
-    - headers:
-      - Content-Type: application/json
-      
-    - body:
-    - query parameters: 
-    - path parameters: 
+* **Listar as notas do usuário:**
 
-  - **Response:**
-
-    - headers:
-      - Content-Type: application/json
-       
-    - body:
-    - https status code:
-    
-- criar uma nova nota
-  - route: /api/v1/notes
-  - method: POST
-  
-  - **Request:**
-
-    - headers:
-      - Content-Type: application/json
-      
-    - body:
-    - query parameters: 
-    - path parameters: 
-
-  - **Response:**
-
-    - headers:
-      - Content-Type: application/json
-       
-    - body:
-    - https status code:
-    
-* buscar nota pertencente ao usuário 
-  - route: /api/v1notes/:id
-  - method: GET
-  
-  - **Request:**
-
-    - headers:
-      - Content-Type: application/json
-      
-    - body:
-    - query parameters: 
-    - path parameters: 
-
-  - **Response:**
-
-    - headers:
-      - Content-Type: application/json
-       
-    - body:
-    - https status code:
-    
-* listar as notas do usuário 
   - route: /api/v1/notes
   - method: GET
-  
+
   - **Request:**
 
     - headers:
       - Content-Type: application/json
-      
-    - body:
-    - query parameters: 
-    - path parameters: 
+      - Authorization: (JWT)
 
   - **Response:**
 
     - headers:
       - Content-Type: application/json
-       
+      - Authorization: (JWT)
     - body:
-    - https status code:
-    
-* editar o texto de uma nota 
+      ```javascript
+      [
+        {
+          id: 123,
+          title: 'any title',
+          content: 'any content',
+        },
+        {
+          id: 123,
+          title: 'any title',
+          content: 'any content',
+        },
+      ];
+      ```
+    - https status code: **200 OK**
+
+* **Editar o titulo de uma nota:**
+
+  - route: /api/v1/notes/:id/title
+  - method: /PATCH
+
+  - **Request:**
+
+    - headers:
+      - Content-Type: application/json
+      - Authorization: (JWT)
+    - body:
+      ```javascript
+      {
+        "title": 'any title',
+      }
+      ```
+
+  - **Response:**
+
+    - headers:
+      - Content-Type: application/json
+      - Authorization: (JWT)
+    - body:
+      ```javascript
+      {
+        "id": 123,
+        "title": 'any title',
+        "content": 'any content',
+        "status": "FINISHED",
+      }
+      ```
+    - https status code: **200 OK**
+
+* **Editar o texto de uma nota:**
+
   - route: /api/v1/notes/:id/text
   - method: /PATCH
-  
+
   - **Request:**
 
     - headers:
       - Content-Type: application/json
-      
+      - Authorization: (JWT)
     - body:
-    - query parameters: 
-    - path parameters: 
+      ```javascript
+      {
+        "content": 'any content',
+      }
+      ```
 
   - **Response:**
 
     - headers:
       - Content-Type: application/json
-       
+      - Authorization: (JWT)
     - body:
-    - https status code:
-    
-* editar o status de uma nota 
+      ```javascript
+      {
+        "id": 123,
+        "title": 'any title',
+        "content": 'any content',
+        "status": "FINISHED",
+      }
+      ```
+    - https status code: **200 OK**
+
+* **Editar o status de uma nota**
+
   - route: /api/v1/notes/:id/status
-  - method: PATCH 
-  
+  - method: PATCH
+
   - **Request:**
 
     - headers:
       - Content-Type: application/json
-      
+      - Authorization: (JWT)
     - body:
-    - query parameters: 
-    - path parameters: 
+      ```javascript
+      {
+        "status": 'FINISHED',
+      }
+      ```
 
   - **Response:**
 
     - headers:
       - Content-Type: application/json
-       
+      - Authorization: (JWT)
     - body:
-    - https status code:
-    
-* apagar uma nota do sistema 
+      ```javascript
+      {
+        "id": 123,
+        "title": 'any title',
+        "content": 'any content',
+        "status": "FINISHED",
+      }
+      ```
+    - https status code: **200 OK**
+
+* apagar uma nota do sistema
+
   - route: /api/v1/notes/:id
   - method: DELETE
-  
+
   - **Request:**
 
     - headers:
       - Content-Type: application/json
-      
+      - Authorization: (JWT)
     - body:
-    - query parameters: 
-    - path parameters: 
+      ```javascript
+      {
+       "id": 123,
+      }
+      ```
 
   - **Response:**
 
     - headers:
       - Content-Type: application/json
-       
-    - body:
-    - https status code:
-    
+      - Authorization: (JWT)
+    - https status code: **200 OK**
