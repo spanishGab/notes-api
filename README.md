@@ -13,13 +13,13 @@ A API deverá permitir:
 
     - headers:
       - Content-Type: application/json
-      - Authorization: (JWT)
     - body:
-      ```javascript
+      ```json
       {
-        "firstname": "firstname",
-        "lastname": "lastname",
+        "firstName": "firstName",
+        "lastName": "lastName",
         "nickname": "nickname",
+        "birthday": "16/04/2000",
         "email": "email@example.com",
         "password": "password"
       }
@@ -27,18 +27,18 @@ A API deverá permitir:
 
   - **Response:**
     - https status code: **201 Created**
-      - Location: /api/v1/users/:id
+      - Location: http://127.0.0.1:5000/api/v1/users/:id
       - Content-Type: application/json
       - body:
-        ```javascript
+        ```json
         {
-          "message": "User created successfully!",
           "user": {
             "userId": 123,
-            "firstname": "firstname",
-            "lastname": "lastname",
+            "firstName": "firstName",
+            "lastName": "lastName",
+            "birthday": "16/04/2000",
             "nickname": "nickname",
-            "email": "firstname.lastname@example.com"
+            "email": "firstName.lastName@example.com"
           }
         }
         ```
@@ -52,24 +52,23 @@ A API deverá permitir:
 
     - headers:
       - Content-Type: application/json
-      - Authorization: (JWT)
     - body:
-      ```javascript
+      ```json
       {
-        "email": "firstname.lastname@example.com",
+        "email": "firstName.lastName@example.com",
         "password": "password"
       }
       ```
 
   - **Response:**
   - https status code: **200 OK**
-    - Location: /api/v1/users/:id
+    - Location: http://127.0.0.1:5000/api/v1/users/:id
     - Content-Type: application/json
     - body:
-      ```javascript
+      ```json
       {
         "token": "token",
-        "userId": 123,
+        "userId": 123
       }
       ```
 
@@ -84,9 +83,9 @@ A API deverá permitir:
       - Content-Type: application/json
       - Authorization: (JWT)
     - body:
-      ```javascript
+      ```json
       {
-        "userId": 123,
+        "userId": 123
       }
       ```
 
@@ -107,10 +106,10 @@ A API deverá permitir:
       - Content-Type: application/json
       - Authorization: (JWT)
     - body:
-      ```javascript
+      ```json
       {
         "title": "any title",
-        "content": "any content",
+        "content": "any content"
       }
       ```
 
@@ -119,12 +118,12 @@ A API deverá permitir:
     - headers:
       - Content-Type: application/json
     - body:
-      ```javascript
+      ```json
       {
         "id": 123,
         "title": "any title",
         "content": "any content",
-        "status": "PENDING",
+        "status": "PENDING"
       }
       ```
     - https status code: **201 Created**
@@ -146,12 +145,12 @@ A API deverá permitir:
       - Content-Type: application/json
       - Authorization: (JWT)
     - body:
-      ```javascript
-      "data": {
-          "id": 123,
-          "title": 'any title',
-          "content": 'any content',
-        }
+      ```json
+      {
+        "id": 123,
+        "title": "any title",
+        "content": "any content"
+      }
       ```
     - https status code: **200 OK**
 
@@ -172,17 +171,17 @@ A API deverá permitir:
       - Content-Type: application/json
       - Authorization: (JWT)
     - body:
-      ```javascript
+      ```json
       [
         {
-          id: 123,
-          title: 'any title',
-          content: 'any content',
+          "id": 123,
+          "title": "any title",
+          "content": "any content",
         },
         {
-          id: 123,
-          title: 'any title',
-          content: 'any content',
+          "id": 123,
+          "title": "any title",
+          "content": "any content",
         },
       ];
       ```
@@ -199,9 +198,9 @@ A API deverá permitir:
       - Content-Type: application/json
       - Authorization: (JWT)
     - body:
-      ```javascript
+      ```json
       {
-        "title": 'any title',
+        "title": "any title"
       }
       ```
 
@@ -211,12 +210,12 @@ A API deverá permitir:
       - Content-Type: application/json
       - Authorization: (JWT)
     - body:
-      ```javascript
+      ```json
       {
         "id": 123,
-        "title": 'any title',
-        "content": 'any content',
-        "status": "FINISHED",
+        "title": "any title",
+        "content": "any content",
+        "status": "FINISHED"
       }
       ```
     - https status code: **200 OK**
@@ -232,9 +231,9 @@ A API deverá permitir:
       - Content-Type: application/json
       - Authorization: (JWT)
     - body:
-      ```javascript
+      ```json
       {
-        "content": 'any content',
+        "content": "any content"
       }
       ```
 
@@ -244,12 +243,12 @@ A API deverá permitir:
       - Content-Type: application/json
       - Authorization: (JWT)
     - body:
-      ```javascript
+      ```json
       {
         "id": 123,
-        "title": 'any title',
-        "content": 'any content',
-        "status": "FINISHED",
+        "title": "any title",
+        "content": "any content",
+        "status": "FINISHED"
       }
       ```
     - https status code: **200 OK**
@@ -265,9 +264,9 @@ A API deverá permitir:
       - Content-Type: application/json
       - Authorization: (JWT)
     - body:
-      ```javascript
+      ```json
       {
-        "status": 'FINISHED',
+        "status": "FINISHED"
       }
       ```
 
@@ -277,12 +276,12 @@ A API deverá permitir:
       - Content-Type: application/json
       - Authorization: (JWT)
     - body:
-      ```javascript
+      ```json
       {
         "id": 123,
-        "title": 'any title',
-        "content": 'any content',
-        "status": "FINISHED",
+        "title": "any title",
+        "content": "any content",
+        "status": "FINISHED"
       }
       ```
     - https status code: **200 OK**
@@ -298,9 +297,9 @@ A API deverá permitir:
       - Content-Type: application/json
       - Authorization: (JWT)
     - body:
-      ```javascript
+      ```json
       {
-       "id": 123,
+        "id": 123
       }
       ```
 
