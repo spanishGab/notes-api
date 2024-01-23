@@ -147,7 +147,6 @@ A API deverá permitir:
 
     - headers:
       - Content-Type: application/json
-      - Authorization: (JWT)
     - body:
       ```json
       {
@@ -176,11 +175,10 @@ A API deverá permitir:
 
     - headers:
       - Content-Type: application/json
-      - Authorization: (JWT)
     - body:
       ```json
       {
-        "date": [
+        "data": [
           {
             "id": 123,
             "title": "any title",
@@ -198,8 +196,8 @@ A API deverá permitir:
             "color": "#000000"
           }
         ],
-        "page": 10,
-        "count": 10,
+        "page": 1,
+        "count": 5,
         "limit": 10,
         "itemsPerPage": 10,
         "hasNext": true
@@ -228,7 +226,6 @@ A API deverá permitir:
 
     - headers:
       - Content-Type: application/json
-      - Authorization: (JWT)
     - body:
       ```json
       {
@@ -242,7 +239,7 @@ A API deverá permitir:
       ```
     - https status code: **200 OK**
 
-* **Editar o texto de uma tarefa:**
+* **Editar a descrição de uma tarefa:**
 
   - route: /api/v1/tasks/:id/description
   - method: /PATCH
@@ -263,7 +260,6 @@ A API deverá permitir:
 
     - headers:
       - Content-Type: application/json
-      - Authorization: (JWT)
     - body:
       ```json
       {
@@ -298,7 +294,6 @@ A API deverá permitir:
 
     - headers:
       - Content-Type: application/json
-      - Authorization: (JWT)
     - body:
       ```json
       {
@@ -333,7 +328,6 @@ A API deverá permitir:
 
     - headers:
       - Content-Type: application/json
-      - Authorization: (JWT)
     - https status code: **204 NO CONTENT**
 
 * **Bloquear uma tarefa do sistema:**
@@ -357,7 +351,6 @@ A API deverá permitir:
 
     - headers:
       - Content-Type: application/json
-      - Authorization: (JWT)
     - body:
       ```json
       {
@@ -366,6 +359,40 @@ A API deverá permitir:
         "description": "any description",
         "status": "TODO",
         "isLocked": true,
+        "color": "#000000"
+      }
+      ```
+    - https status code: **200 OK**
+
+* **Desbloquear uma tarefa do sistema:**
+
+  - route: /api/v1/tasks/:id/lock
+  - method: PATCH
+
+  - **Request:**
+
+    - headers:
+      - Content-Type: application/json
+      - Authorization: (JWT)
+    - body:
+      ```json
+      {
+        "id": 123
+      }
+      ```
+
+  - **Response:**
+
+    - headers:
+      - Content-Type: application/json
+    - body:
+      ```json
+      {
+        "id": 123,
+        "title": "any title",
+        "description": "any description",
+        "status": "TODO",
+        "isLocked": false,
         "color": "#000000"
       }
       ```
