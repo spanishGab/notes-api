@@ -62,7 +62,6 @@ A API deverá permitir:
 
   - **Response:**
   - https status code: **200 OK**
-    - Location: http://127.0.0.1:5000/api/v1/users/:id
     - Content-Type: application/json
     - body:
       ```json
@@ -117,6 +116,7 @@ A API deverá permitir:
 
     - headers:
       - Content-Type: application/json
+      - Location: http://127.0.0.1:5000/api/v1/notes
     - body:
       ```json
       {
