@@ -109,7 +109,7 @@ A API deverá permitir:
       {
         "title": "any title",
         "description": "any description",
-        "islocked": false,
+        "isLocked": false,
         "color": "#000000"
       }
       ```
@@ -125,8 +125,8 @@ A API deverá permitir:
         "id": 123,
         "title": "any title",
         "description": "any description",
-        "status": "PENDING",
-        "islocked": false,
+        "status": "TODO",
+        "isLocked": false,
         "color": "#000000"
       }
       ```
@@ -154,7 +154,8 @@ A API deverá permitir:
         "id": 123,
         "title": "any title",
         "description": "any description",
-        "islocked": false,
+        "status": "TODO",
+        "isLocked": false,
         "color": "#000000"
       }
       ```
@@ -178,22 +179,31 @@ A API deverá permitir:
       - Authorization: (JWT)
     - body:
       ```json
-      [
-        {
-          "id": 123,
-          "title": "any title",
-          "description": "any description",
-          "islocked": false,
-          "color": "#000000"
-        },
-        {
-          "id": 123,
-          "title": "any title",
-          "description": "any description",
-          "islocked": false,
-          "color": "#000000"
-        },
-      ];
+      {
+        "date": [
+          {
+            "id": 123,
+            "title": "any title",
+            "description": "any description",
+            "status": "TODO",
+            "isLocked": false,
+            "color": "#000000"
+          },
+          {
+            "id": 123,
+            "title": "any title",
+            "description": "any description",
+            "status": "TODO",
+            "isLocked": false,
+            "color": "#000000"
+          }
+        ],
+        "page": 10,
+        "count": 10,
+        "limit": 10,
+        "itemsPerPage": 10,
+        "hasNext": true
+      }
       ```
     - https status code: **200 OK**
 
@@ -225,8 +235,8 @@ A API deverá permitir:
         "id": 123,
         "title": "any title",
         "description": "any description",
-        "status": "FINISHED",
-        "islocked": false,
+        "status": "TODO",
+        "isLocked": false,
         "color": "#000000"
       }
       ```
@@ -260,8 +270,8 @@ A API deverá permitir:
         "id": 123,
         "title": "any title",
         "description": "any description",
-        "status": "FINISHED",
-        "islocked": false,
+        "status": "TODO",
+        "isLocked": false,
         "color": "#000000"
       }
       ```
@@ -280,7 +290,7 @@ A API deverá permitir:
     - body:
       ```json
       {
-        "status": "FINISHED"
+        "status": "TODO"
       }
       ```
 
@@ -295,8 +305,8 @@ A API deverá permitir:
         "id": 123,
         "title": "any title",
         "description": "any description",
-        "status": "FINISHED",
-        "islocked": false,
+        "status": "TODO",
+        "isLocked": false,
         "color": "#000000"
       }
       ```
@@ -354,8 +364,8 @@ A API deverá permitir:
         "id": 123,
         "title": "any title",
         "description": "any description",
-        "status": "PENDING",
-        "islocked": true,
+        "status": "TODO",
+        "isLocked": true,
         "color": "#000000"
       }
       ```
