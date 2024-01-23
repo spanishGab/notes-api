@@ -108,7 +108,8 @@ A API deverá permitir:
       ```json
       {
         "title": "any title",
-        "content": "any content"
+        "description": "any description",
+        "islocked": false
       }
       ```
 
@@ -122,8 +123,9 @@ A API deverá permitir:
       {
         "id": 123,
         "title": "any title",
-        "content": "any content",
-        "status": "PENDING"
+        "description": "any description",
+        "status": "PENDING",
+        "islocked": false
       }
       ```
     - https status code: **201 Created**
@@ -149,7 +151,8 @@ A API deverá permitir:
       {
         "id": 123,
         "title": "any title",
-        "content": "any content"
+        "description": "any description",
+        "islocked": false
       }
       ```
     - https status code: **200 OK**
@@ -176,12 +179,14 @@ A API deverá permitir:
         {
           "id": 123,
           "title": "any title",
-          "content": "any content",
+          "description": "any description",
+          "islocked": false
         },
         {
           "id": 123,
           "title": "any title",
-          "content": "any content",
+          "description": "any description",
+          "islocked": false
         },
       ];
       ```
@@ -214,15 +219,16 @@ A API deverá permitir:
       {
         "id": 123,
         "title": "any title",
-        "content": "any content",
-        "status": "FINISHED"
+        "description": "any description",
+        "status": "FINISHED",
+        "islocked": false
       }
       ```
     - https status code: **200 OK**
 
 * **Editar o texto de uma tarefa:**
 
-  - route: /api/v1/tasks/:id/text
+  - route: /api/v1/tasks/:id/description
   - method: /PATCH
 
   - **Request:**
@@ -233,7 +239,7 @@ A API deverá permitir:
     - body:
       ```json
       {
-        "content": "any content"
+        "description": "any description"
       }
       ```
 
@@ -247,8 +253,9 @@ A API deverá permitir:
       {
         "id": 123,
         "title": "any title",
-        "content": "any content",
-        "status": "FINISHED"
+        "description": "any description",
+        "status": "FINISHED",
+        "islocked": false
       }
       ```
     - https status code: **200 OK**
@@ -280,8 +287,9 @@ A API deverá permitir:
       {
         "id": 123,
         "title": "any title",
-        "content": "any content",
-        "status": "FINISHED"
+        "description": "any description",
+        "status": "FINISHED",
+        "islocked": false
       }
       ```
     - https status code: **200 OK**
@@ -308,4 +316,38 @@ A API deverá permitir:
     - headers:
       - Content-Type: application/json
       - Authorization: (JWT)
+    - https status code: **204 NO CONTENT**
+
+* **Bloquear uma tarefa do sistema:**
+
+  - route: /api/v1/tasks/:id/unlock
+  - method: PATCH
+
+  - **Request:**
+
+    - headers:
+      - Content-Type: application/json
+      - Authorization: (JWT)
+    - body:
+      ```json
+      {
+        "id": 123
+      }
+      ```
+
+  - **Response:**
+
+    - headers:
+      - Content-Type: application/json
+      - Authorization: (JWT)
+    - body:
+      ```json
+      {
+        "id": 123,
+        "title": "any title",
+        "description": "any description",
+        "status": "PENDING",
+        "islocked": true
+      }
+      ```
     - https status code: **200 OK**
