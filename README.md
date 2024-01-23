@@ -1,4 +1,4 @@
-# notes-api
+# tasks-api
 
 ## Requisitos
 
@@ -94,9 +94,9 @@ A API deverá permitir:
       - Content-Type: application/json
     - https status code: **204 No Content**
 
-- **Criar uma nova nota:**
+- **Criar uma nova tarefa:**
 
-  - route: /api/v1/notes
+  - route: /api/v1/tasks
   - method: POST
 
   - **Request:**
@@ -116,7 +116,7 @@ A API deverá permitir:
 
     - headers:
       - Content-Type: application/json
-      - Location: http://127.0.0.1:5000/api/v1/notes
+      - Location: http://127.0.0.1:5000/api/v1/tasks
     - body:
       ```json
       {
@@ -128,9 +128,9 @@ A API deverá permitir:
       ```
     - https status code: **201 Created**
 
-* **Buscar nota pertencente ao usuário:**
+* **Buscar tarefa pertencente ao usuário:**
 
-  - route: /api/v1/notes/:id
+  - route: /api/v1/tasks/:id
   - method: GET
 
   - **Request:**
@@ -154,9 +154,9 @@ A API deverá permitir:
       ```
     - https status code: **200 OK**
 
-* **Listar as notas do usuário:**
+* **Listar as tarefas do usuário:**
 
-  - route: /api/v1/notes
+  - route: /api/v1/tasks
   - method: GET
 
   - **Request:**
@@ -187,9 +187,9 @@ A API deverá permitir:
       ```
     - https status code: **200 OK**
 
-* **Editar o titulo de uma nota:**
+* **Editar o titulo de uma tarefa:**
 
-  - route: /api/v1/notes/:id/title
+  - route: /api/v1/tasks/:id/title
   - method: /PATCH
 
   - **Request:**
@@ -220,9 +220,9 @@ A API deverá permitir:
       ```
     - https status code: **200 OK**
 
-* **Editar o texto de uma nota:**
+* **Editar o texto de uma tarefa:**
 
-  - route: /api/v1/notes/:id/text
+  - route: /api/v1/tasks/:id/text
   - method: /PATCH
 
   - **Request:**
@@ -253,9 +253,9 @@ A API deverá permitir:
       ```
     - https status code: **200 OK**
 
-* **Editar o status de uma nota**
+* **Editar o status de uma tarefa**
 
-  - route: /api/v1/notes/:id/status
+  - route: /api/v1/tasks/:id/status
   - method: PATCH
 
   - **Request:**
@@ -286,9 +286,9 @@ A API deverá permitir:
       ```
     - https status code: **200 OK**
 
-* apagar uma nota do sistema
+* **Apagar uma tarefa do sistema:**
 
-  - route: /api/v1/notes/:id
+  - route: /api/v1/tasks/:id
   - method: DELETE
 
   - **Request:**
