@@ -109,7 +109,8 @@ A API deverá permitir:
       {
         "title": "any title",
         "description": "any description",
-        "islocked": false
+        "islocked": false,
+        "color": "#000000"
       }
       ```
 
@@ -125,7 +126,8 @@ A API deverá permitir:
         "title": "any title",
         "description": "any description",
         "status": "PENDING",
-        "islocked": false
+        "islocked": false,
+        "color": "#000000"
       }
       ```
     - https status code: **201 Created**
@@ -152,7 +154,8 @@ A API deverá permitir:
         "id": 123,
         "title": "any title",
         "description": "any description",
-        "islocked": false
+        "islocked": false,
+        "color": "#000000"
       }
       ```
     - https status code: **200 OK**
@@ -180,13 +183,15 @@ A API deverá permitir:
           "id": 123,
           "title": "any title",
           "description": "any description",
-          "islocked": false
+          "islocked": false,
+          "color": "#000000"
         },
         {
           "id": 123,
           "title": "any title",
           "description": "any description",
-          "islocked": false
+          "islocked": false,
+          "color": "#000000"
         },
       ];
       ```
@@ -221,7 +226,8 @@ A API deverá permitir:
         "title": "any title",
         "description": "any description",
         "status": "FINISHED",
-        "islocked": false
+        "islocked": false,
+        "color": "#000000"
       }
       ```
     - https status code: **200 OK**
@@ -255,7 +261,8 @@ A API deverá permitir:
         "title": "any title",
         "description": "any description",
         "status": "FINISHED",
-        "islocked": false
+        "islocked": false,
+        "color": "#000000"
       }
       ```
     - https status code: **200 OK**
@@ -289,7 +296,8 @@ A API deverá permitir:
         "title": "any title",
         "description": "any description",
         "status": "FINISHED",
-        "islocked": false
+        "islocked": false,
+        "color": "#000000"
       }
       ```
     - https status code: **200 OK**
@@ -347,7 +355,8 @@ A API deverá permitir:
         "title": "any title",
         "description": "any description",
         "status": "PENDING",
-        "islocked": true
+        "islocked": true,
+        "color": "#000000"
       }
       ```
     - https status code: **200 OK**
