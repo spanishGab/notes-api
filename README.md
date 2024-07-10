@@ -109,6 +109,7 @@ A API deverá permitir:
       {
         "title": "any title",
         "description": "any description",
+        "status": "TODO",
         "isLocked": false,
         "color": "#000000"
       }
