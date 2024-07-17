@@ -5,18 +5,20 @@ import (
 )
 
 func TestSetTitle(t *testing.T) {
-	var task *Task = &Task{
-		title:       "Any task",
-		description: "Any description",
-		status:      "TODO",
-		isLocked:    false,
-		color:       "#000000",
-	}
+	t.Run("should set a new task title", func(t *testing.T) {
+		var task *Task = &Task{
+			title:       "Any task",
+			description: "Any description",
+			status:      "TODO",
+			isLocked:    false,
+			color:       "#000000",
+		}
 
-	expected := "First Task"
-	task.SetTitle(expected)
+		expected := "First Task"
+		task.SetTitle(expected)
 
-	if task.title != expected {
-		t.Errorf("expected '%s' but got '%s'", expected, task.title)
-	}
+		if task.title != expected {
+			t.Errorf("expected '%s' but got '%s'", expected, task.title)
+		}
+	})
 }
