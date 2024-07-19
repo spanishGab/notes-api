@@ -4,16 +4,15 @@ import (
 	"fmt"
 )
 
-type task struct {
+type Task struct {
 	title       string
 	description string
 	status      string
 	isLocked    bool
-	// todo: add method Set
 	color string
 }
 
-func New(title string, description string, status string, color string) (*task, error) {
+func New(title string, description string, status string, color string) (*Task, error) {
 	if title == "" && description == "" {
 		return nil, fmt.Errorf("a title or a description is required")
 	}
@@ -29,7 +28,7 @@ func New(title string, description string, status string, color string) (*task, 
 		defaultColor = "#ffffff"
 	}
 
-	var task *task = &task{
+	var task *Task = &Task{
 		title: title,
 		description: description,
 		status: status,
@@ -40,15 +39,15 @@ func New(title string, description string, status string, color string) (*task, 
 	return task, nil
 }
 
-func (task *task) SetTitle(title string) {
+func (task *Task) SetTitle(title string) {
 	task.title = title
 }
 
-func (task *task) SetDescription(description string) {
+func (task *Task) SetDescription(description string) {
 	task.description = description
 }
 
-func (task *task) Lock(isLocked bool) {
+func (task *Task) Lock(isLocked bool) {
 	if !task.isLocked {
 		task.isLocked = isLocked
 	}
@@ -56,7 +55,7 @@ func (task *task) Lock(isLocked bool) {
 	// todo: error
 }
 
-func (task *task) Unlock(isUnlocked bool) {
+func (task *Task) Unlock(isUnlocked bool) {
 	if task.isLocked {
 		task.isLocked = isUnlocked
 	}
@@ -64,7 +63,11 @@ func (task *task) Unlock(isUnlocked bool) {
 	// todo: error
 }
 
-func (task *task) SetStatus(status string) error {
+func (task *Task) setColor(color string) {
+	task.color = color
+}
+
+func (task *Task) SetStatus(status string) error {
 	if !task.canChangeTodoStatus(status) || 
 		!task.canChangeInProgressStatus(status) ||
 		!task.canChangeDoneStatus(status) ||
@@ -77,7 +80,7 @@ func (task *task) SetStatus(status string) error {
 	return nil
 }
 
-func (task *task) canChangeTodoStatus(status string) bool {
+func (task *Task) canChangeTodoStatus(status string) bool {
 	if task.status == "TODO" {
 		if status == "IN_PROGRESS" || status == "CANCELED" {
 			return true
@@ -86,7 +89,7 @@ func (task *task) canChangeTodoStatus(status string) bool {
 	return false
 }
 
-func (task *task) canChangeInProgressStatus(status string) bool {
+func (task *Task) canChangeInProgressStatus(status string) bool {
 	if task.status == "IN_PROGRESS" {
 		if status == "TODO" || status == "DONE" || status == "CANCELED" {
 			return true
@@ -97,7 +100,7 @@ func (task *task) canChangeInProgressStatus(status string) bool {
 	return false
 }
 
-func (task *task) canChangeDoneStatus(status string) bool {
+func (task *Task) canChangeDoneStatus(status string) bool {
 	if task.status == "DONE" {
 		return false
 	}
@@ -106,7 +109,7 @@ func (task *task) canChangeDoneStatus(status string) bool {
 	return false
 }
 
-func (task *task) canChangeCanceledStatus(status string) bool {
+func (task *Task) canChangeCanceledStatus(status string) bool {
 	if task.status == "CANCELED" {
 		return false
 	}
@@ -116,5 +119,8 @@ func (task *task) canChangeCanceledStatus(status string) bool {
 }
 
 func isStatusCreatable(status string) (bool) {
-	return status != "TODO" || status != "IN_PROGRESS" 
+	if status == "TODO" || status == "IN_PROGRESS" {
+		return true
+	}
+	return false
 }
