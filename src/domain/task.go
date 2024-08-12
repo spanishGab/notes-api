@@ -47,19 +47,17 @@ func (task *Task) SetDescription(description string) {
 	task.description = description
 }
 
-func (task *Task) Lock(isLocked bool) {
+func (task *Task) Lock() {
 	if !task.isLocked {
-		task.isLocked = isLocked
+		task.isLocked = true
 	}
-
 	// todo: error
 }
 
-func (task *Task) Unlock(isUnlocked bool) {
+func (task *Task) Unlock() {
 	if task.isLocked {
-		task.isLocked = isUnlocked
+		task.isLocked = false
 	}
-
 	// todo: error
 }
 
@@ -68,16 +66,30 @@ func (task *Task) setColor(color string) {
 }
 
 func (task *Task) SetStatus(status string) error {
-	if !task.canChangeTodoStatus(status) || 
-		!task.canChangeInProgressStatus(status) ||
-		!task.canChangeDoneStatus(status) ||
-		!task.canChangeCanceledStatus(status) {
-			return fmt.Errorf("can not allowed to change status from %s to %s", task.status, status)
+	fmt.Println("Antes", task)
+	fmt.Println("Antes status", status)
+	fmt.Println("Antes change", !task.canChangeCanceledStatus() )
+
+	if task.canChangeTodoStatus(status) {
+		task.status = status
+		return nil
 	}
 
-	task.status = status
+	if task.canChangeInProgressStatus(status) {
+		task.status = status
+		return nil
+	}
 
-	return nil
+	if task.canChangeDoneStatus(status) {
+		task.status = status
+		return nil
+	}
+
+	if !task.canChangeCanceledStatus() {
+		return fmt.Errorf("can not allowed to change status from %s to %s", task.status, status)
+	}
+
+	return fmt.Errorf("can not allowed to change status from %s to %s", task.status, status)
 }
 
 func (task *Task) canChangeTodoStatus(status string) bool {
@@ -95,27 +107,20 @@ func (task *Task) canChangeInProgressStatus(status string) bool {
 			return true
 		}
 	}
-
-	// todo: add error
 	return false
 }
 
-func (task *Task) canChangeDoneStatus(status string) bool {
-	if task.status == "DONE" {
-		return false
+func (task *Task) canChangeDoneStatus(status string) (bool) {
+	if (task.status == "DONE") {
+		if (status == "TODO" || status == "IN_PROGRESS") {
+			return true
+		}
 	}
-
-	// todo: add error
 	return false
 }
 
-func (task *Task) canChangeCanceledStatus(status string) bool {
-	if task.status == "CANCELED" {
-		return false
-	}
-
-	// todo: add error
-	return false
+func (task *Task) canChangeCanceledStatus() bool {
+	return task.status != "CANCELED"
 }
 
 func isStatusCreatable(status string) (bool) {
