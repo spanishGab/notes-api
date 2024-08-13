@@ -50,3 +50,44 @@ func (controller *TaskController) GetTask(id string) (*domain.Task, error) {
 	}
 	return task, nil
 }
+
+func (controller *TaskController) UpdateTask(id string, title string, description string, status string, isLocked bool, color string) (*domain.Task, error) {
+	parsedID, parseIDErr := parseUUID(id)
+	if parseIDErr != nil {
+		return nil, parseIDErr
+	}
+
+	task := TasksDB[parsedID]
+	if task == nil {
+		return nil, fmt.Errorf("task not found")
+	}
+
+	if title == "" && description == "" && status == "" && color == "" {
+		return nil, fmt.Errorf("no data to update")
+	}
+
+	if title != "" {
+		task.SetTitle(title)
+	}
+
+	if description != "" {
+		task.SetDescription(description)
+	}
+
+	if status != "" {
+		task.SetStatus(status)
+	}
+
+	if isLocked {
+			task.Lock()
+		} else {
+			task.Unlock()
+		}
+
+	if color != "" {
+		task.SetColor(color)
+	}
+
+	TasksDB[parsedID] = task
+	return task, nil
+}
