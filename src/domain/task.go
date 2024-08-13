@@ -2,6 +2,7 @@ package domain
 
 import (
 	"fmt"
+	"regexp"
 )
 
 type Task struct {
@@ -9,7 +10,7 @@ type Task struct {
 	description string
 	status      string
 	isLocked    bool
-	color string
+	color       string
 }
 
 func New(title string, description string, status string, color string) (*Task, error) {
@@ -39,12 +40,20 @@ func New(title string, description string, status string, color string) (*Task, 
 	return task, nil
 }
 
-func (task *Task) SetTitle(title string) {
+func (task *Task) SetTitle(title string) (error) {
+	if title == "" {
+		return fmt.Errorf("title cannot be empty")
+	}
 	task.title = title
+	return nil
 }
 
-func (task *Task) SetDescription(description string) {
+func (task *Task) SetDescription(description string) (error) {
+	if description == "" {
+		return fmt.Errorf("description cannot be empty")
+	}
 	task.description = description
+	return nil
 }
 
 func (task *Task) Lock() {
@@ -61,15 +70,22 @@ func (task *Task) Unlock() {
 	// todo: error
 }
 
-func (task *Task) setColor(color string) {
+func (task *Task) SetColor(color string) (error) {
+	match, err := regexp.MatchString("^#[0-9a-fA-F]{6}$", color)
+
+	if err != nil {
+		return fmt.Errorf("error matching regex: %v", err)
+	}
+
+	if !match {
+		return fmt.Errorf("color must be a valid 6-character hexadecimal string starting with #")
+	}
+
 	task.color = color
+	return nil
 }
 
 func (task *Task) SetStatus(status string) error {
-	fmt.Println("Antes", task)
-	fmt.Println("Antes status", status)
-	fmt.Println("Antes change", !task.canChangeCanceledStatus() )
-
 	if task.canChangeTodoStatus(status) {
 		task.status = status
 		return nil

@@ -112,7 +112,7 @@ func TestTask(t *testing.T) {
 		expected := "#c3c3c3"
 
 		mockTask := setupTask()
-		mockTask.setColor(expected)
+		mockTask.SetColor(expected)
 
 		if mockTask.color != expected {
 			t.Errorf("expected '%s' but got '%s'", expected, mockTask.color)
