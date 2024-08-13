@@ -91,3 +91,14 @@ func (controller *TaskController) UpdateTask(id string, title string, descriptio
 	TasksDB[parsedID] = task
 	return task, nil
 }
+
+func (controller *TaskController) DeleteTask(id uuid.UUID) (*domain.Task, error) {
+	task := TasksDB[id]
+
+	if (task == nil) {
+		return nil, fmt.Errorf("task not found")
+	}
+
+	delete(TasksDB, id)
+	return task, nil
+}
