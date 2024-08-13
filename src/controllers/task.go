@@ -18,6 +18,13 @@ type NewTask struct {
 
 type TaskController struct {}
 
+func parseUUID(id string) (uuid.UUID, error) {
+	parsedID, err := uuid.Parse(id)
+	if err != nil {
+		return uuid.UUID{}, fmt.Errorf("invalid id")
+	}
+	return parsedID, nil
+}
 
 func (controller *TaskController) CreateTask(task NewTask) (*domain.Task, error) {
 	newTask, err := domain.New(task.Title, task.Description, "TODO", task.Color)
@@ -29,4 +36,17 @@ func (controller *TaskController) CreateTask(task NewTask) (*domain.Task, error)
 	TasksDB[id] = newTask
 
 	return newTask, nil
+}
+
+func (controller *TaskController) GetTask(id string) (*domain.Task, error) {
+	parsedID, parseIDErr := parseUUID(id)
+	if parseIDErr != nil {
+		return nil, parseIDErr
+	}
+
+	task := TasksDB[parsedID]
+	if (task == nil) {
+		return nil, fmt.Errorf("task not found")
+	}
+	return task, nil
 }
